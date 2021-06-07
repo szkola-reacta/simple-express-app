@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 
+const SECRET = 'jgydtsrcr5674F'
 const app = express();
 app.use(bodyParser.json());
 const PORT = 3008;
@@ -26,7 +28,8 @@ app.post('/auth', (req, res) => {
   const { email, password } = req.body;
 
   if (email === VALID_EMAIL && password === VALID_PASSWORD) {
-    res.status(200).json({ status: 'ok' });
+    const token = jwt.sign({ email }, SECRET);
+    res.status(200).json({ status: 'ok', token });
   } else {
     res.status(403).json({ error: 'invalid credentials' });
   }
