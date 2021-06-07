@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const jwt = require('jsonwebtoken');
 
 const SECRET = 'jgydtsrcr5674F'
 const app = express();
 app.use(bodyParser.json());
+app.use(cors()); // Allow *
 const PORT = 3008;
 
 app.get('/', (_req, res) => {
