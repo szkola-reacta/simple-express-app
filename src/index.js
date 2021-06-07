@@ -20,7 +20,9 @@ app.get('/users', (_req, res) => {
 });
 
 app.post('/auth', (req, res) => {
-  console.log(req.body);
+  const { email, password } = req.body;
+
+  console.log(email, password);
   res.status(200).json({})
 });
 
