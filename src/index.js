@@ -20,10 +20,16 @@ app.get('/users', (_req, res) => {
 });
 
 app.post('/auth', (req, res) => {
+  const VALID_EMAIL = 'patryk.omiotek@gmail.com';
+  const VALID_PASSWORD = 'admin1';
+
   const { email, password } = req.body;
 
-  console.log(email, password);
-  res.status(200).json({})
+  if (email === VALID_EMAIL && password === VALID_PASSWORD) {
+    res.status(200).json({ status: 'ok' });
+  } else {
+    res.status(403).json({ error: 'invalid credentials' });
+  }
 });
 
 app.listen(PORT, () => {
